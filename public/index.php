@@ -13,6 +13,7 @@
 
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.9.0/css/all.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/1.0.5/tailwind.min.css">
+        <link href="https://fonts.googleapis.com/css?family=Lato&display=swap" rel="stylesheet">
         <link rel="stylesheet" href="css/modal.css">
         <link rel="stylesheet" href="css/theme.css">
 
@@ -36,7 +37,7 @@
 
     </head>
 
-    <body class="font-sans antialiased text-gray-900 leading-normal tracking-wider bg-cover background">
+    <body class="antialiased text-gray-900 leading-normal tracking-wider bg-cover background">
 
         <?php
         if($site_environment == "production")

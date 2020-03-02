@@ -20,3 +20,7 @@
     /*!* Fallback Colour *!*/
     /*background-color: #07071a;*/
 }
+
+body {
+    font-family: 'Lato', 'Arial', sans-serif;
+}
