@@ -63,7 +63,7 @@
                         $gravatar_url = "https://www.gravatar.com/avatar/" . md5(strtolower(trim( "matt@banner.wtf"))) . "?d=mp&s=500";
                     ?>
 
-                    <img src="<?php echo $gravatar_url ?>" class="block rounded-full shadow-xl mx-auto sm:mt-6 mt-4 h-48 w-48 bg-cover bg-center" alt="Matt Banner headshot">
+                    <img src="<?php echo $gravatar_url ?>" class="block rounded-full mx-auto sm:mt-6 mt-4 h-48 w-48 bg-cover bg-center" alt="Matt Banner headshot">
 
                     <h1 class="text-3xl font-bold pt-8 lg:pt-4">Matt Banner</h1>
                     <div class="mx-auto lg:mx-0 w-4/5 pt-3 border-b-2 theme-item opacity-75"></div>
