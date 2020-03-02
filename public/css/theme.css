@@ -1,20 +1,20 @@
 .theme-item{
-    color:#2e4a9d;
+    color:#3B3B3B;
 }
 
 .theme-button{
     color: #ffffff;
-    background-color:#2e4a9d;
+    background-color:#3B3B3B;
+    transition: 0.5s;
 }
 
 .theme-button:hover{
-    background-color: #20349d;
+    background-color: #6B6B6B;
 }
 
 .background {
-    background: #667db6;  /* fallback for old browsers */
-    background: -webkit-linear-gradient(to right, #667db6, #0082c8, #0082c8, #667db6);  /* Chrome 10-25, Safari 5.1-6 */
-    background: linear-gradient(to right, #667db6, #0082c8, #0082c8, #667db6); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    background: rgb(56,56,56);
+    background: linear-gradient(90deg, rgba(56,56,56,1) 0%, rgba(74,74,74,1) 100%);
 
     /*background-image:url('../image/background.jpg');*/
     /*!* Fallback Colour *!*/

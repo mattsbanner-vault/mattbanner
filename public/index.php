@@ -54,16 +54,16 @@
         ?>
 
 
-        <div class="max-w-4xl flex items-center h-auto lg:h-screen flex-wrap mx-auto my-16 lg:my-0">
+        <div class="max-w-4xl flex items-center h-auto lg:h-screen flex-wrap mx-auto my-8 lg:my-0">
             <!--Main Col-->
-            <div id="profile" class="w-full lg:w-3/5 rounded-lg shadow-2xl bg-white opacity-100 mx-6 lg:mx-auto">
+            <div id="profile" class="w-full lg:w-3/5 rounded-lg shadow-2xl bg-white opacity-100 mx-2 lg:mx-auto">
                 <div class="p-5 md:p-10 text-center lg:text-left">
 
                     <?php
                         $gravatar_url = "https://www.gravatar.com/avatar/" . md5(strtolower(trim( "matt@banner.wtf"))) . "?d=mp&s=500";
                     ?>
 
-                    <img src="<?php echo $gravatar_url ?>" class="block rounded-full mx-auto sm:mt-6 mt-4 h-48 w-48 bg-cover bg-center" alt="Matt Banner headshot">
+                    <img src="<?php echo $gravatar_url ?>" class="block rounded-full mx-auto sm:mt-6 mt-4 h-48 w-48 bg-cover bg-center" alt="Matt Banner Emojis">
 
                     <h1 class="text-3xl font-bold pt-8 lg:pt-4">Matt Banner</h1>
                     <div class="mx-auto lg:mx-0 w-4/5 pt-3 border-b-2 theme-item opacity-75"></div>
