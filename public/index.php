@@ -5,7 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
         <title>Matt Banner - Developer</title>
-        <meta name="description" content="Matt Banner is a Backend Web Developer based in Essex, using the Laravel framework.">
+        <meta name="description" content="Matt Banner is a Backend Web Developer based in Essex, using Laravel and Craft CMS.">
         <meta name="keywords" content="">
         <meta name="author" content="Matt Banner">
 
@@ -56,7 +56,6 @@
 
 
         <div class="max-w-4xl flex items-center h-auto lg:h-screen flex-wrap mx-auto my-8 lg:my-0">
-            <!--Main Col-->
             <div id="profile" class="w-full lg:w-3/5 rounded-lg shadow-2xl bg-white opacity-100 mx-2 lg:mx-auto">
                 <div class="p-5 md:p-10 text-center lg:text-left">
 
