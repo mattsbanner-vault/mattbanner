@@ -4,8 +4,8 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
-        <title>Matt Banner - Developer</title>
-        <meta name="description" content="Matt Banner is a Backend Web Developer based in Essex, using Laravel and Craft CMS.">
+        <title>Matt Banner | Web Developer</title>
+        <meta name="description" content="Matt Banner is a Web Developer based in Essex. Working with HTML, CSS, PHP, Laravel, Craft CMS, Vue.js, Docker & AWS.">
         <meta name="keywords" content="">
         <meta name="author" content="Matt Banner">
 
@@ -71,8 +71,8 @@
                     <p class="pt-4 text-base font-bold flex items-center justify-center lg:justify-start"><i class="fas fa-briefcase theme-item"></i> &nbsp; Web Developer</p>
                     <p class="pt-2 text-gray-800 flex items-center justify-center lg:justify-start"><i class="fas fa-globe-europe theme-item"></i> &nbsp; Essex, United Kingdom</p>
 
-                    <p class="pt-8 text-sm">Hi, I'm a Web Developer based in Essex. Working on the backend for <a href="https://enovate.co.uk" target="_blank" rel="noreferrer">Enovate</a>.</p>
-                    <p class="pt-8 text-gray-800 text-sm">Building with Laravel, Craft CMS, Sass, Twig, Docker, Vue.js, MySQL &amp; Git.</p>
+                    <p class="pt-8 text-sm">Hi, I'm a Web Developer based in Essex. Currently working on the backend for <a href="https://enovate.co.uk" target="_blank" rel="noreferrer">Enovate</a>.</p>
+                    <p class="pt-8 text-gray-800 text-sm">Building with HTML, CSS, PHP, Laravel, Craft CMS, Sass, Twig, Docker, Vue.js, MySQL, &amp; Git.</p>
 
                     <div class="pt-12 pb-8">
                         <a class="theme-button text-white font-bold py-2 px-4 rounded-full" href="mailto:matt@banner.wtf">Get In Touch</a>
