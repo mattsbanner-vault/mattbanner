@@ -1,0 +1,104 @@
+@import "variables";
+
+@import "~tailwindcss/base.css";
+@import "~tailwindcss/components.css";
+@import "~tailwindcss/utilities.css";
+
+// Features
+@import "features/smooth-scrolling";
+
+// Fonts
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;800&display=swap');
+
+// Font Awesome
+@import "~@fortawesome/fontawesome-free/scss/fontawesome.scss";
+@import "~@fortawesome/fontawesome-free/scss/solid.scss";
+@import "~@fortawesome/fontawesome-free/scss/brands.scss";
+
+.turbolinks-progress-bar {
+    @apply bg-blue-700;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    font-weight: 400;
+}
+
+h1 {
+    font-weight: 800;
+
+    @apply text-4xl;
+
+    @screen md {
+        @apply text-6xl;
+    }
+}
+
+h2 {
+    font-weight: 500;
+
+    @apply text-xl pb-2;
+
+    @screen md {
+        @apply text-2xl;
+    }
+}
+
+p {
+    @apply py-2;
+}
+
+form {
+    &.form {
+        &.contact-form {
+
+            @apply bg-gray-300 rounded p-6 py-8 my-4;
+
+            label {
+                @apply block w-full text-xs uppercase font-medium pb-2;
+            }
+
+            input[type="text"], input[type="email"] {
+                @apply block w-full border border-gray-300 rounded p-2 shadow-sm;
+            }
+
+            textarea {
+                @apply block w-full border border-gray-300 rounded p-2 shadow-sm h-48 resize-none;
+            }
+
+            input[type="submit"] {
+
+                @apply w-32 p-2 rounded float-right bg-blue-900 text-white transition ease-in-out duration-700;
+
+                &:hover {
+                    @apply bg-blue-800;
+                }
+
+            }
+
+        }
+    }
+}
+
+.social-icons {
+
+    @apply px-4 text-xl;
+
+    @screen md {
+        @apply w-1/2;
+    }
+
+    ul {
+        li {
+            @apply inline pr-2 transition ease-in-out duration-700;
+
+            &:hover {
+                @apply text-gray-500;
+            }
+        }
+    }
+}
+
+.transition-fade {
+    @apply transition ease-in-out duration-700;
+}

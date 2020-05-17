@@ -1,0 +1,50 @@
+kind: pipeline
+type: docker
+name: build and deploy
+
+steps:
+
+  - name: composer
+    image: mattbanner/php-ci:latest
+    commands:
+      - composer install
+
+  - name: npm
+    image: mattbanner/php-ci:latest
+    commands:
+      - npm ci
+      - npm run prod
+
+  - name: deploy production
+    image: mattbanner/php-ci:latest
+    when:
+      branch: master
+    environment:
+      ENVIRONMENT: 'production'
+      SSH_PRIVATE_KEY:
+        from_secret: SSH_PRIVATE_KEY
+      DOMAIN_PRODUCTION:
+        from_secret: DOMAIN_PRODUCTION
+    commands:
+      - mkdir -p ~/.ssh
+      - ssh-keyscan -t rsa "$DOMAIN_PRODUCTION" >> ~/.ssh/known_hosts
+      - echo "$SSH_PRIVATE_KEY" >> ~/.ssh/id_rsa
+      - chmod 600 ~/.ssh/id_rsa
+      - dep deploy production
+
+  - name: deploy staging
+    image: mattbanner/php-ci:latest
+    when:
+      branch: develop
+    environment:
+      ENVIRONMENT: 'staging'
+      SSH_PRIVATE_KEY:
+        from_secret: SSH_PRIVATE_KEY
+      DOMAIN_STAGING:
+        from_secret: DOMAIN_STAGING
+    commands:
+      - mkdir -p ~/.ssh
+      - ssh-keyscan -t rsa "$DOMAIN_STAGING" >> ~/.ssh/known_hosts
+      - echo "$SSH_PRIVATE_KEY" >> ~/.ssh/id_rsa
+      - chmod 600 ~/.ssh/id_rsa
+      - dep deploy staging
