@@ -21,10 +21,6 @@
         @slot('content')
 
             <div class="pb-4">
-                <p>If you would like to get in touch, please use the following form to send me an email. I'll get back to you as soon as possible.</p>
-            </div>
-
-            <div class="pb-6">
 
                 @if(session()->has('formStatus') && session()->get('formStatus') == 'success')
 
@@ -39,6 +35,10 @@
                     </div>
 
                 @else
+
+                    <div class="pb-6">
+                        <p>If you would like to get in touch, please use the following form to send me an email. I'll get back to you as soon as possible.</p>
+                    </div>
 
                     @include('forms.contact')
 
