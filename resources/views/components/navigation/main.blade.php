@@ -7,7 +7,7 @@
     <div id="menu" class="hidden w-full block flex-grow md:flex md:items-center md:w-auto">
         <div class="md:flex-grow text-center">
 
-            @include('components.navigation.item', ['url' => route('home'), 'title' => 'About'])
+            @include('components.navigation.item', ['url' => route('home'), 'title' => 'Home'])
 
             @include('components.navigation.item', ['url' => route('contact'), 'title' => 'Contact'])
 
