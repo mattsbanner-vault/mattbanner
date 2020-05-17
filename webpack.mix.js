@@ -25,3 +25,7 @@ mix.js('resources/js/app.js', 'public/dist/js')
             postCss: [ tailwindcss('./tailwind.config.js') ],
           })
     .purgeCss();
+
+if (mix.inProduction()) {
+    mix.version();
+}
