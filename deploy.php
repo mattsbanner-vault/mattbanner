@@ -48,7 +48,7 @@ set('laravel_version', function () {
 
 set('sentry', [
     'organization' => 'matt-banner',
-    'projects' => ['mattbanner.co.uk'],
+    'projects' => ['mattbannercouk'],
     'token' => 'f47d63b4de7e4eb28873d9d5963d2d62ad9ab492e2dc469ab2dd726673e598e8',
 ]);
 
