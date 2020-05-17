@@ -16,6 +16,9 @@
 
         <script src="{{ asset('dist/js/app.js') }}" ></script>
 
+        <link rel="dns-prefetch" href="https://www.google-analytics.com" >
+        <link rel="dns-prefetch" href="https://www.googletagmanager.com" >
+
         <script> {{-- TODO: Get this in the Laravel Mix build --}}
             function toggleMenu() {
                 var element = document.getElementById("menu");
