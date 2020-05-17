@@ -17,7 +17,7 @@ class ContactController extends Controller
      */
     public function index()
     {
-        //
+        return view('contact');
     }
 
     /**
@@ -59,18 +59,6 @@ class ContactController extends Controller
                 'formStatus' => 'success'
             ]);
         }
-
-
-//        if ($contact->exists) {
-//
-//            // send the notifications
-//
-//        } else {
-//
-//            // tell the user we had an issue
-
-//        }
-
     }
 
     /**
