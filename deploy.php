@@ -5,7 +5,7 @@ require 'recipe/common.php';
 require 'deployer/sentry.php';
 
 // Project name
-set('application', getenv('DOMAIN_PRODUCTION'));
+set('application', 'mattbanner.co.uk');
 
 // Project repository
 set('repository', 'git@github.com:mattsbanner/mattbanner.git');
@@ -48,8 +48,8 @@ set('laravel_version', function () {
 
 set('sentry', [
     'organization' => 'matt-banner',
-    'projects' => [getenv('DOMAIN_PRODUCTION')],
-    'token' => getenv('SENTRY_TOKEN'),
+    'projects' => ['mattbanner.co.uk'],
+    'token' => 'f47d63b4de7e4eb28873d9d5963d2d62ad9ab492e2dc469ab2dd726673e598e8',
 ]);
 
 /////////////////////////////////////////////////
@@ -141,16 +141,14 @@ task('deploy:upload', function () {
 /////////////////////////////////////////////////
 
 // Production Server(s)
-host('production')
-    ->hostname(getenv('DOMAIN_PRODUCTION'))
+host('mattbanner.co.uk')
     ->set('deploy_path', '/sites/{{application}}')
     ->set('branch', 'master')
     ->stage('production')
     ->user('ubuntu');
 
 // Staging Server
-host('staging')
-    ->hostname(getenv('DOMAIN_STAGING'))
+host('svr06.local.banner.wtf')
     ->set('deploy_path', '/sites/{{application}}')
     ->set('branch', 'develop')
     ->stage('staging')
