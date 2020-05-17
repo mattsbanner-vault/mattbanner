@@ -29,7 +29,7 @@ task(
             'date_deploy_finished' => $now,
             'sentry_server' => 'https://sentry.io',
             'previous_commit' => null,
-            'environment' => getenv('ENVIRONMENT', 'Unknown'),
+            'environment' => 'Production',
             'deploy_name' => null,
         ];
 
