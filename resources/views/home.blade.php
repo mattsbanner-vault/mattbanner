@@ -19,7 +19,7 @@
         @endslot
 
         @slot('content')
-            <p>Hi I'm Matt &#128075;a Web Developer based in Essex. Building with HTML, CSS, PHP, Laravel, Craft CMS, Sass, Twig, Docker, Vue.js, MySQL, & Git. Maintaining and hosting at AWS.</p>
+            <p>Hi I'm Matt &#128075; a Web Developer based in Essex. Building with HTML, CSS, PHP, Laravel, Craft CMS, Sass, Twig, Docker, Vue.js, MySQL, & Git. Maintaining and hosting at AWS.</p>
 
             <p>Currently working on the backend for <a class="hover:text-blue-800 transition-fade" rel="noopener" target="_blank" href="https://enovate.co.uk">Enovate</a>, a web design and development agency in Chelmsford, Essex.</p>
 
