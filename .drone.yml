@@ -26,6 +26,7 @@ steps:
       DOMAIN_PRODUCTION:
         from_secret: DOMAIN_PRODUCTION
     commands:
+      - rm -rf ~/.ssh
       - mkdir -p ~/.ssh
       - ssh-keyscan -t rsa "$DOMAIN_PRODUCTION" >> ~/.ssh/known_hosts
       - echo "$SSH_PRIVATE_KEY" >> ~/.ssh/id_rsa
