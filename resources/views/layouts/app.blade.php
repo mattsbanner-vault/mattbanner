@@ -56,6 +56,15 @@
             @include('components.navigation.main')
 
             <main>
+                {{-- "Masthead" --}}
+                @component('components.generic.masthead')
+
+                    @slot('title')
+                        {{ config('app.name' ?? '') }}
+                    @endslot
+
+                @endcomponent
+
                 @yield('content')
             </main>
 

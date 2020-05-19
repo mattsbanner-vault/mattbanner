@@ -1,9 +1,20 @@
 <nav class="slide slide-top-200 flex items-center justify-between flex-wrap bg-blue-900">
-    <div class="flex md:hidden w-full justify-end py-2">
-        <button onclick="toggleMenu()" aria-label="Expand menu" class="flex items-center px-3 py-2 text-white border-white hover:text-gray-300 transition-fade mr-2">
-            <i class="fas fa-bars text-xl"></i>
-        </button>
+
+    <div class="w-full py-4 bg-blue-900 flex md:hidden">
+        <div class="w-10/12 relative">
+            <div class="ml-2 w-8 h-8 inline-block align-middle">
+                <img src="{{ App\Enums\AssetsEnum::PROFILE_IMAGE ?? '' }}" alt="Matt Banner's profile image" class="h-full rounded align-middle">
+            </div>
+            <h1 class="text-white text-xl inline-block align-middle">Matt Banner</h1>
+        </div>
+
+        <div class="w-2/12 mr-4 relative">
+            <button onclick="toggleMenu()" aria-label="Expand menu" class="float-right flex text-white border-white hover:text-gray-300 transition-fade h-full">
+                <i class="fas fa-bars text-xl"></i>
+            </button>
+        </div>
     </div>
+
     <div id="menu" class="hidden w-full block flex-grow md:flex md:items-center md:w-auto">
         <div class="md:flex-grow text-center">
 

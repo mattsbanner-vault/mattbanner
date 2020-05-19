@@ -2,15 +2,6 @@
 
 @section('content')
 
-    {{-- "Masthead" --}}
-    @component('components.generic.masthead')
-
-        @slot('title')
-            {{ config('app.name' ?? '') }}
-        @endslot
-
-    @endcomponent
-
     {{-- About --}}
     @component('components.generic.section')
 

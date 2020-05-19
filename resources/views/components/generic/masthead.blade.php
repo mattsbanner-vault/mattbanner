@@ -1,4 +1,4 @@
-<div class="flex pt-6 md:pt-16 max-w-screen-sm lg:max-w-screen-md mx-auto px-4 h-32 md:h-40">
+<div class="hidden md:flex pt-8 max-w-screen-sm lg:max-w-screen-md mx-auto px-4 h-32">
 
     <div class="w-2/3 md:w-5/6">
         <a href="{{ route('home') }}">
