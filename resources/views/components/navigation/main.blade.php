@@ -2,10 +2,12 @@
 
     <div class="w-full py-4 bg-blue-900 flex md:hidden">
         <div class="w-10/12 relative">
-            <div class="ml-2 w-8 h-8 inline-block align-middle">
-                <img src="{{ App\Enums\AssetsEnum::PROFILE_IMAGE ?? '' }}" alt="Matt Banner's profile image" class="h-full rounded align-middle">
-            </div>
-            <h1 class="text-white text-xl inline-block align-middle">Matt Banner</h1>
+            <a href="{{ route('home') }}">
+                <div class="ml-2 w-8 h-8 inline-block align-middle">
+                    <img src="{{ App\Enums\AssetsEnum::PROFILE_IMAGE ?? '' }}" alt="Matt Banner's profile image" class="h-full rounded align-middle">
+                </div>
+                <h1 class="text-white text-xl inline-block align-middle">Matt Banner</h1>
+            </a>
         </div>
 
         <div class="w-2/12 mr-4 relative">
