@@ -16,6 +16,18 @@
 
         <script src="{{ asset('dist/js/app.js') }}" ></script>
 
+        @if (config('recaptcha.site_key') !== null && config('recaptcha.secret_key') !== null)
+            <script src="https://www.google.com/recaptcha/api.js?render={{ config('recaptcha.site_key') }}"></script>
+            <script>
+                grecaptcha.ready(function () {
+                    grecaptcha.execute('{{ config('recaptcha.site_key') }}', { action: 'contact' }).then(function (token) {
+                        var recaptchaResponse = document.getElementById('recaptchaResponse');
+                        recaptchaResponse.value = token;
+                    });
+                });
+            </script>
+        @endif
+
         <link rel="dns-prefetch" href="https://www.google-analytics.com" >
         <link rel="dns-prefetch" href="https://www.googletagmanager.com" >
 

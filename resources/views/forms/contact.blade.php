@@ -31,15 +31,26 @@
             @enderror
         </div>
 
-{{--        <div class="w-full mt-6 text-sm text-gray-600">--}}
-{{--            This site is protected by reCAPTCHA and the Google--}}
-{{--            <a class="hover:text-blue-700 transition-fade" href="https://policies.google.com/privacy">Privacy Policy</a> and--}}
-{{--            <a class="hover:text-blue-700 transition-fade" href="https://policies.google.com/terms">Terms of Service</a> apply.--}}
-{{--        </div>--}}
+        <input type="hidden" name="recaptcha_response" id="recaptchaResponse">
 
-        <div class="w-full mt-6">
-            <input type="submit" value="Send">
+        @error('recaptcha_response')
+        <div class="text-xs pt-4 text-red-700">
+            <strong>{{ $message }}</strong>
+            This is in place to prevent spam submissions. Please try launching an incognito / private browser window and re-submitting the form there.
         </div>
+        @enderror
+
+        @if (!$errors->has('recaptcha_response'))
+            <div class="w-full mt-6 text-sm text-gray-600">
+                This site is protected by reCAPTCHA and the Google
+                <a class="hover:text-blue-700 transition-fade" href="https://policies.google.com/privacy">Privacy Policy</a> and
+                <a class="hover:text-blue-700 transition-fade" href="https://policies.google.com/terms">Terms of Service</a> apply.
+            </div>
+
+            <div class="w-full mt-6">
+                <input type="submit" value="Send">
+            </div>
+        @endif
 
     </div>
 
