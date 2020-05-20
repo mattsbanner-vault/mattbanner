@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Contact;
 use App\Mail\ContactAdminMail;
 use App\Mail\ContactUserMail;
+use App\Rules\Recaptcha;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 
@@ -42,6 +43,7 @@ class ContactController extends Controller
             'name' => 'required|max:50',
             'email' => 'required|email|max:250',
             'message' => 'required',
+            'recaptcha_response' => ['required', new Recaptcha(1)]
         ]);
 
         // Record the submission
