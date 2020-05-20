@@ -24,7 +24,11 @@ mix.js('resources/js/app.js', 'public/dist/js')
             processCssUrls: false,
             postCss: [ tailwindcss('./tailwind.config.js') ],
           })
-    .purgeCss();
+    .purgeCss({
+        whitelist: [
+            'grecaptcha-badge',
+        ]
+    });
 
 if (mix.inProduction()) {
     mix.version();

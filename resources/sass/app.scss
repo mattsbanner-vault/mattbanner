@@ -102,3 +102,7 @@ form {
 .transition-fade {
     @apply transition ease-in-out duration-700;
 }
+
+.grecaptcha-badge {
+    visibility: hidden;
+}
