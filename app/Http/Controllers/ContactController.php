@@ -43,7 +43,7 @@ class ContactController extends Controller
             'name' => 'required|max:50',
             'email' => 'required|email|max:250',
             'message' => 'required',
-            'recaptcha_response' => ['required', new Recaptcha(1)]
+            'recaptcha_response' => ['required', new Recaptcha(0.5)]
         ]);
 
         // Record the submission
