@@ -8,7 +8,7 @@ const IndexPage = () => (
 
     <div>
       <h1 className={`text-4xl font-bold mb-2`}>Matt Banner</h1>
-      <p className={`text-lg mb-1`}>👋🏼 Hello, I'm Matt, a Web Developer and AWS Architect based in the UK.</p>
+      <p className={`text-lg mb-1`}><span role="img" aria-label="Waving hand">👋🏼</span> Hello, I'm Matt, a Web Developer and AWS Architect based in the UK.</p>
       <p className={`text-gray-500 text-sm`}>I work with AWS, Laravel, Craft CMS, Vue &amp; Gatsby.</p>
       
       <div className={`mt-6`}>
