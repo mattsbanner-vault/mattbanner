@@ -29,5 +29,15 @@ module.exports = {
       },
     },
     `gatsby-plugin-offline`,
+    {
+      resolve: `gatsby-plugin-umami`,
+      options: {
+        websiteId: 'de702076-3008-4470-8841-17bbaef99fac',
+        srcUrl: 'https://umami.banner.wtf/umami.js',
+        includeInDevelopment: false,
+        autoTrack: true,
+        respectDoNotTrack: true
+      },
+    },
   ],
 }
