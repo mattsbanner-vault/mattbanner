@@ -9,7 +9,7 @@ const IndexPage = () => (
     <div>
       <h1 className={`text-5xl font-bold mb-2`}>Matt Banner</h1>
       <p className={`text-2xl mb-1 text-gray-600`}><span role="img" aria-label="Waving hand" className={`pr-1`}>👋🏼</span> Hello, I'm Matt, a Web Developer and AWS Architect based in the UK.</p>
-      <p className={`text-gray-500`}>I work with AWS, Laravel, Craft CMS, Vue &amp; Gatsby.</p>
+      <p className={`text-gray-500`}>I work with AWS, Laravel, Craft CMS, Vue, Gatsby, Alpine &amp; Tailwind.</p>
       
       <div className={`mt-6`}>
         <a
