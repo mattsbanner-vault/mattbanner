@@ -51,10 +51,7 @@ jobs:
           aws-region: ${{ secrets.AWS_REGION }}
 
       - name: Upload Build to S3
-        run: |
-          ls -la
-          ls -la public
-          aws s3 sync public s3://${{ secrets.PRODUCTION_AWS_BUCKET }} --delete --metadata Header-X-Robots-Tag=none;
+        run: aws s3 sync public s3://${{ secrets.PRODUCTION_AWS_BUCKET }} --delete --metadata Header-X-Robots-Tag=none;
 
       - name: Create CloudFront Invalidation
         run: aws cloudfront create-invalidation --distribution-id ${{ secrets.PRODUCTION_AWS_CLOUDFRONT_DISTRIBUTION_ID }} --paths "/*"
