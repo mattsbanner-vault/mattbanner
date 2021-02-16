@@ -41,6 +41,7 @@ jobs:
         uses: actions/download-artifact@v2
         with:
           name: build
+          path: public
 
       - name: Configure AWS
         uses: aws-actions/configure-aws-credentials@v1
@@ -50,7 +51,9 @@ jobs:
           aws-region: ${{ secrets.AWS_REGION }}
 
       - name: Upload Build to S3
-        run: aws s3 sync public s3://${STAGING_AWS_BUCKET} --delete --metadata Header-X-Robots-Tag=none;
+        run: |
+          ls -la
+          aws s3 sync public s3://${STAGING_AWS_BUCKET} --delete --metadata Header-X-Robots-Tag=none;
 
       - name: Create CloudFront Invalidation
         run: aws cloudfront create-invalidation --distribution-id ${STAGING_AWS_CLOUDFRONT_DISTRIBUTION_ID} --paths "/*"
