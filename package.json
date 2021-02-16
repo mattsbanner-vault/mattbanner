@@ -25,6 +25,7 @@
     "tailwindcss": "^2.0.3"
   },
   "devDependencies": {
+    "cross-env": "^7.0.3",
     "prettier": "2.2.1"
   },
   "keywords": [
@@ -33,6 +34,7 @@
   "license": "0BSD",
   "scripts": {
     "build": "gatsby build",
+    "build-production": "cross-env APP_ENV=production gatsby build",
     "develop": "gatsby develop",
     "format": "prettier --write \"**/*.{js,jsx,ts,tsx,json,md}\"",
     "start": "npm run develop",

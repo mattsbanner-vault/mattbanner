@@ -1,3 +1,19 @@
+const dynamicPlugins = [];
+if (process.env.APP_ENV === 'production') {
+  dynamicPlugins.push(
+      {
+        resolve: `gatsby-plugin-umami`,
+        options: {
+          websiteId: 'de702076-3008-4470-8841-17bbaef99fac',
+          srcUrl: 'https://umami.banner.wtf/umami.js',
+          includeInDevelopment: false,
+          autoTrack: true,
+          respectDoNotTrack: true
+        }
+      }
+  );
+}
+
 module.exports = {
   siteMetadata: {
     title: `Matt Banner`,
@@ -5,6 +21,7 @@ module.exports = {
     author: `Matt Banner`,
   },
   plugins: [
+    ...dynamicPlugins,
     `gatsby-plugin-react-helmet`,
     `gatsby-plugin-postcss`,
     {
@@ -28,16 +45,6 @@ module.exports = {
         icon: `src/images/memoji-logo.png`, // This path is relative to the root of the site.
       },
     },
-    `gatsby-plugin-offline`,
-    {
-      resolve: `gatsby-plugin-umami`,
-      options: {
-        websiteId: 'de702076-3008-4470-8841-17bbaef99fac',
-        srcUrl: 'https://umami.banner.wtf/umami.js',
-        includeInDevelopment: false,
-        autoTrack: true,
-        respectDoNotTrack: true
-      },
-    },
+    `gatsby-plugin-offline`
   ],
 }
