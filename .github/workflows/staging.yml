@@ -54,7 +54,7 @@ jobs:
         run: |
           ls -la
           ls -la public
-          aws s3 sync public s3://${STAGING_AWS_BUCKET} --delete --metadata Header-X-Robots-Tag=none;
+          aws s3 sync public s3://${{ secrets.STAGING_AWS_BUCKET }} --delete --metadata Header-X-Robots-Tag=none;
 
       - name: Create CloudFront Invalidation
-        run: aws cloudfront create-invalidation --distribution-id ${STAGING_AWS_CLOUDFRONT_DISTRIBUTION_ID} --paths "/*"
+        run: aws cloudfront create-invalidation --distribution-id ${{ secrets.STAGING_AWS_CLOUDFRONT_DISTRIBUTION_ID }} --paths "/*"
