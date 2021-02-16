@@ -53,6 +53,7 @@ jobs:
       - name: Upload Build to S3
         run: |
           ls -la
+          ls -la public
           aws s3 sync public s3://${STAGING_AWS_BUCKET} --delete --metadata Header-X-Robots-Tag=none;
 
       - name: Create CloudFront Invalidation
