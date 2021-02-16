@@ -1,0 +1,55 @@
+name: Staging
+
+on:
+  push:
+    branches:
+      - develop
+
+jobs:
+
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@master
+
+      - name: Setup Node
+        uses: actions/setup-node@v1
+        with:
+          node-version: '12'
+
+      - name: NPM Install
+        run: npm ci
+
+      - name: NPM Build
+        run: npm run production
+
+      - name: Upload Artifacts
+        uses: actions/upload-artifact@v2
+        with:
+          name: build
+          path: public
+
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+
+      - name: Download Artifacts
+        uses: actions/download-artifact@v2
+        with:
+          name: build
+
+      - name: Configure AWS
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ${{ secrets.AWS_REGION }}
+
+      - name: Upload Build to S3
+        run: aws s3 sync public s3://${STAGING_AWS_BUCKET} --delete --metadata Header-X-Robots-Tag=none;
+
+      - name: Create CloudFront Invalidation
+        run: aws cloudfront create-invalidation --distribution-id ${STAGING_AWS_CLOUDFRONT_DISTRIBUTION_ID} --paths "/*"
