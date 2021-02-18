@@ -16,14 +16,14 @@ jobs:
       - uses: chrnorm/deployment-action@releases/v1
         id: deployment
         name: Create GitHub Deployment
+        outputs:
+          deployment_id: ${{ steps.deployment.outputs.deployment_id }}
         with:
           environment: staging
           environment_url: ${{ secrets.STAGING_URL }}
           state: "pending"
           target_url: ${{ secrets.STAGING_URL }}
           token: "${{ github.token }}"
-        outputs:
-          deployment_id: ${{ steps.deployment.outputs.deployment_id }}
 
       - name: Setup Node
         uses: actions/setup-node@v1
