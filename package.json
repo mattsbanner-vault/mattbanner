@@ -26,7 +26,9 @@
   },
   "devDependencies": {
     "cross-env": "^7.0.3",
-    "prettier": "2.2.1"
+    "cypress": "^6.5.0",
+    "prettier": "2.2.1",
+    "start-server-and-test": "^1.12.0"
   },
   "keywords": [
     "gatsby"
@@ -40,7 +42,10 @@
     "start": "npm run develop",
     "serve": "gatsby serve",
     "clean": "gatsby clean",
-    "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing\" && exit 1"
+    "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing\" && exit 1",
+    "cypress": "cypress open",
+    "cypress:run": "cypress run",
+    "cypress:test": "start-server-and-test develop http://localhost:8000 cypress:run"
   },
   "repository": {
     "type": "git",
