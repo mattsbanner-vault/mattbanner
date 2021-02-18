@@ -3,12 +3,43 @@ name: Staging
 on:
   push:
     branches:
-      - develop
+      - cypress-github-actions # TODO: change this branch before merging in.
 
 jobs:
 
+  cypress-chrome:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ macos-latest, ubuntu-latest ]
+    steps:
+      - uses: actions/checkout@v2
+      - uses: cypress-io/github-action@v2
+        with:
+          browser: chrome
+
+  cypress-firefox:
+    runs-on: ubuntu-latest
+    container:
+      image: cypress/browsers:node12.16.1-chrome80-ff73
+      options: --user 1001
+    steps:
+      - uses: actions/checkout@v2
+      - uses: cypress-io/github-action@v2
+        with:
+          browser: firefox
+
+  cypress-edge:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: cypress-io/github-action@v2
+        with:
+          browser: edge
+
   build:
     runs-on: ubuntu-latest
+    needs: [ cypress-chrome, cypress-firefox, cypress-edge ]
     outputs:
       deployment_id: ${{ steps.deployment.outputs.deployment_id }}
     steps:
