@@ -9,9 +9,20 @@ jobs:
 
   build:
     runs-on: ubuntu-latest
+    outputs:
+      deployment_id: ${{ steps.deployment.outputs.deployment_id }}
     steps:
       - name: Checkout Repository
         uses: actions/checkout@master
+
+      - uses: chrnorm/deployment-action@releases/v1
+        id: deployment
+        name: Create GitHub Deployment
+        with:
+          environment: production
+          initial_status: "pending"
+          target_url: ${{ secrets.PRODUCTION_URL }}
+          token: "${{ github.token }}"
 
       - name: Setup Node
         uses: actions/setup-node@v1
@@ -34,6 +45,7 @@ jobs:
     runs-on: ubuntu-latest
     needs: build
     steps:
+
       - name: Checkout Repository
         uses: actions/checkout@v2
 
@@ -50,8 +62,35 @@ jobs:
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: ${{ secrets.AWS_REGION }}
 
+      - name: Update Deployment Status (In Progress)
+        uses: chrnorm/deployment-status@releases/v1
+        with:
+          deployment_id: ${{ needs.build.outputs.deployment_id }}
+          target_url: ${{ secrets.PRODUCTION_URL }}
+          state: "in_progress"
+          token: "${{ github.token }}"
+
       - name: Upload Build to S3
         run: aws s3 sync public s3://${{ secrets.PRODUCTION_AWS_BUCKET }} --delete --metadata Header-X-Robots-Tag=none;
 
       - name: Create CloudFront Invalidation
         run: aws cloudfront create-invalidation --distribution-id ${{ secrets.PRODUCTION_AWS_CLOUDFRONT_DISTRIBUTION_ID }} --paths "/*"
+
+      - name: Update Deployment Status (Success)
+        if: success()
+        uses: chrnorm/deployment-status@releases/v1
+        with:
+          deployment_id: ${{ needs.build.outputs.deployment_id }}
+          environment_url: ${{ secrets.PRODUCTION_URL }}
+          target_url: ${{ secrets.PRODUCTION_URL }}
+          state: "success"
+          token: "${{ github.token }}"
+
+      - name: Update Deployment Status (Failure)
+        if: failure()
+        uses: chrnorm/deployment-status@releases/v1
+        with:
+          deployment_id: ${{ needs.build.outputs.deployment_id }}
+          target_url: ${{ secrets.PRODUCTION_URL }}
+          state: "failure"
+          token: "${{ github.token }}"
