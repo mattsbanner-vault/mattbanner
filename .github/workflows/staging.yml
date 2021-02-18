@@ -13,6 +13,18 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@master
 
+      - uses: chrnorm/deployment-action@releases/v1
+        id: deployment
+        name: Create GitHub Deployment
+        with:
+          environment: staging
+          environment_url: ${{ secrets.STAGING_URL }}
+          state: "pending"
+          target_url: ${{ secrets.STAGING_URL }}
+          token: "${{ github.token }}"
+        outputs:
+          deployment_id: ${{ steps.deployment.outputs.deployment_id }}
+
       - name: Setup Node
         uses: actions/setup-node@v1
         with:
@@ -38,15 +50,6 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v2
 
-      - uses: chrnorm/deployment-action@releases/v1
-        id: deployment
-        name: Create GitHub Deployment
-        with:
-          environment: staging
-          environment_url: ${{ secrets.STAGING_URL }}
-          target_url: ${{ secrets.STAGING_URL }}
-          token: "${{ github.token }}"
-
       - name: Download Artifacts
         uses: actions/download-artifact@v2
         with:
@@ -70,7 +73,7 @@ jobs:
         if: success()
         uses: chrnorm/deployment-status@releases/v1
         with:
-          deployment_id: ${{ steps.deployment.outputs.deployment_id }}
+          deployment_id: ${{ needs.build.outputs.deployment_id }}
           environment_url: ${{ secrets.STAGING_URL }}
           target_url: ${{ secrets.STAGING_URL }}
           state: "success"
@@ -80,7 +83,7 @@ jobs:
         if: failure()
         uses: chrnorm/deployment-status@releases/v1
         with:
-          deployment_id: ${{ steps.deployment.outputs.deployment_id }}
+          deployment_id: ${{ needs.build.outputs.deployment_id }}
           environment_url: ${{ secrets.STAGING_URL }}
           target_url: ${{ secrets.STAGING_URL }}
           state: "failure"
