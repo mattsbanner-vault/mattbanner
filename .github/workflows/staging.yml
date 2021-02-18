@@ -11,12 +11,14 @@ jobs:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        os: [ macos-latest, ubuntu-latest ]
+        os: [ macos-latest, ubuntu-latest, windows-latest ]
     steps:
       - uses: actions/checkout@v2
       - uses: cypress-io/github-action@v2
         with:
           browser: chrome
+          start: npm start
+#          start-windows: npm run start:windows:server
 
   cypress-firefox:
     runs-on: ubuntu-latest
@@ -28,14 +30,17 @@ jobs:
       - uses: cypress-io/github-action@v2
         with:
           browser: firefox
+          start: npm start
 
   cypress-edge:
-    runs-on: windows-latest
+    runs-on: [ macos-latest, windows-latest ]
     steps:
       - uses: actions/checkout@v2
       - uses: cypress-io/github-action@v2
         with:
           browser: edge
+          start: npm start
+          #          start-windows: npm run start:windows:server
 
   build:
     runs-on: ubuntu-latest
