@@ -20,7 +20,7 @@ jobs:
         name: Create GitHub Deployment
         with:
           environment: staging
-          state: "pending"
+          initial_status: "pending"
           target_url: ${{ secrets.STAGING_URL }}
           token: "${{ github.token }}"
 
