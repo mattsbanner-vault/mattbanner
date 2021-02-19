@@ -44,29 +44,29 @@ jobs:
             .cache
           retention-days: 1
 
-  cypress-chrome:
-    runs-on: ${{ matrix.os }}
-    needs: build
-    strategy:
-      fail-fast: false
-      matrix:
-        os: [ macos-latest, windows-latest, ubuntu-latest ]
-    steps:
-      - name: Checkout Repository
-        uses: actions/checkout@v2
-
-      - name: Download Artifacts
-        uses: actions/download-artifact@v2
-        with:
-          name: build
-          path: ./
-
-      - name: Cypress
-        uses: cypress-io/github-action@v2
-        with:
-          browser: chrome
-          start: npm run serve
-          wait-on: http://localhost:9000
+#  cypress-chrome:
+#    runs-on: ${{ matrix.os }}
+#    needs: build
+#    strategy:
+#      fail-fast: false
+#      matrix:
+#        os: [ macos-latest, windows-latest, ubuntu-latest ]
+#    steps:
+#      - name: Checkout Repository
+#        uses: actions/checkout@v2
+#
+#      - name: Download Artifacts
+#        uses: actions/download-artifact@v2
+#        with:
+#          name: build
+#          path: ./
+#
+#      - name: Cypress
+#        uses: cypress-io/github-action@v2
+#        with:
+#          browser: chrome
+#          start: npm run serve
+#          wait-on: http://localhost:9000
 
   cypress-firefox:
     runs-on: ${{ matrix.os }}
@@ -79,24 +79,6 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v2
 
-      - name: Cypress
-        uses: cypress-io/github-action@v2
-        with:
-          browser: firefox
-          start: npm run serve
-          wait-on: http://localhost:9000
-
-  cypress-edge:
-    runs-on: ${{ matrix.os }}
-    needs: build
-    strategy:
-      fail-fast: false
-      matrix:
-        os: [ macos-latest, windows-latest ]
-    steps:
-      - name: Checkout Repository
-        uses: actions/checkout@v2
-
       - name: Download Artifacts
         uses: actions/download-artifact@v2
         with:
@@ -106,9 +88,33 @@ jobs:
       - name: Cypress
         uses: cypress-io/github-action@v2
         with:
-          browser: edge
+          browser: firefox
           start: npm run serve
           wait-on: http://localhost:9000
+
+#  cypress-edge:
+#    runs-on: ${{ matrix.os }}
+#    needs: build
+#    strategy:
+#      fail-fast: false
+#      matrix:
+#        os: [ macos-latest, windows-latest ]
+#    steps:
+#      - name: Checkout Repository
+#        uses: actions/checkout@v2
+#
+#      - name: Download Artifacts
+#        uses: actions/download-artifact@v2
+#        with:
+#          name: build
+#          path: ./
+#
+#      - name: Cypress
+#        uses: cypress-io/github-action@v2
+#        with:
+#          browser: edge
+#          start: npm run serve
+#          wait-on: http://localhost:9000
 
 #  deploy:
 #    runs-on: ubuntu-latest
