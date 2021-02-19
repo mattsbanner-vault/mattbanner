@@ -35,7 +35,7 @@ jobs:
           path: |
             .cache
             **/node_modules
-          key: ${{ runner.os }}-node12-${{ hashFiles('**/node-modules') }}
+          key: ${{ runner.os }}-node12 }}
 
       - name: NPM Install
         run: npm ci
@@ -68,10 +68,10 @@ jobs:
       - name: Cache
         uses: actions/cache@v2
         with:
-          key: ${{ runner.os }}-node12-${{ hashFiles('package-lock.json') }}
           path: |
             .cache
-            node_modules
+            **/node_modules
+          key: ${{ runner.os }}-node12 }}
 
       - name: Download Artifacts - Build
         uses: actions/download-artifact@v2
