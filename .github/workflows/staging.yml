@@ -68,10 +68,10 @@ jobs:
       - name: Cache
         uses: actions/cache@v2
         with:
+          key: ${{ runner.os }}-node12-${{ hashFiles('package-lock.json') }}
           path: |
             .cache
             node_modules
-        key: ${{ runner.os }}-node12-${{ hashFiles('package-lock.json') }}
 
       - name: Download Artifacts - Build
         uses: actions/download-artifact@v2
