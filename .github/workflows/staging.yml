@@ -67,8 +67,8 @@ jobs:
         uses: cypress-io/github-action@v2
         with:
           browser: ${{ matrix.browser }}
-          start: npm run serve
-          wait-on: http://localhost:9000
+          start: npm run serve -p 8000
+          wait-on: http://localhost:8000
 
   # TODO: Once edge has properly been released for Linux, we can combine this into the above matrix.
   cypress-edge:
@@ -92,8 +92,8 @@ jobs:
         uses: cypress-io/github-action@v2
         with:
           browser: edge
-          start: npm run serve
-          wait-on: http://localhost:9000
+          start: npm run serve -p 8000
+          wait-on: http://localhost:8000
 
   deploy:
     runs-on: ubuntu-latest
