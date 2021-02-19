@@ -4,10 +4,11 @@ let siteName = 'Matt Banner';
 
 context('Titles', () => {
   beforeEach(() => {
-    cy.visit('/')
+    //
   })
 
   it('Check Home', () => {
+    cy.visit('/')
     cy.title().should('equal', 'Home | ' + siteName);
   })
 
