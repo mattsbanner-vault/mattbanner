@@ -7,44 +7,8 @@ on:
 
 jobs:
 
-  cypress-chrome:
-    runs-on: ${{ matrix.os }}
-    strategy:
-      matrix:
-        os: [ macos-latest, ubuntu-latest, windows-latest ]
-    steps:
-      - uses: actions/checkout@v2
-      - uses: cypress-io/github-action@v2
-        with:
-          browser: chrome
-          start: npm start
-#          start-windows: npm run start:windows:server
-
-  cypress-firefox:
+  build: # TODO: For production we need to disable Umami
     runs-on: ubuntu-latest
-    container:
-      image: cypress/browsers:node12.16.1-chrome80-ff73
-      options: --user 1001
-    steps:
-      - uses: actions/checkout@v2
-      - uses: cypress-io/github-action@v2
-        with:
-          browser: firefox
-          start: npm start
-
-  cypress-edge:
-    runs-on: [ macos-latest, windows-latest ]
-    steps:
-      - uses: actions/checkout@v2
-      - uses: cypress-io/github-action@v2
-        with:
-          browser: edge
-          start: npm start
-          #          start-windows: npm run start:windows:server
-
-  build:
-    runs-on: ubuntu-latest
-    needs: [ cypress-chrome, cypress-firefox, cypress-edge ]
     outputs:
       deployment_id: ${{ steps.deployment.outputs.deployment_id }}
     steps:
@@ -78,9 +42,61 @@ jobs:
           path: public
           retention-days: 1
 
+  cypress-chrome:
+    runs-on: ${{ matrix.os }}
+    needs: build
+    strategy:
+      matrix:
+#        os: [ macos-latest, ubuntu-latest, windows-latest ]
+        os: [ ubuntu-latest ]
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+
+      - name: Download Artifacts
+        uses: actions/download-artifact@v2
+        with:
+          name: build
+          path: public
+
+      - uses: cypress-io/github-action@v2
+        with:
+          browser: chrome
+          start: npm run serve
+          #          start-windows: npm run start:windows:server
+          wait-on: http://localhost:9000
+
+#  cypress-firefox:
+#    runs-on: ubuntu-latest
+#    needs: build
+#    container:
+#      image: cypress/browsers:node12.16.1-chrome80-ff73
+#      options: --user 1001
+#    steps:
+#      - uses: actions/checkout@v2
+#      - uses: cypress-io/github-action@v2
+#        with:
+#          browser: firefox
+#          build: npm run build
+#          start: npm start
+#          wait-on: http://localhost:8000
+#
+#  cypress-edge:
+#    runs-on: [ macos-latest, windows-latest ]
+#    needs: build
+#    steps:
+#      - uses: actions/checkout@v2
+#      - uses: cypress-io/github-action@v2
+#        with:
+#          browser: edge
+#          build: npm run build
+#          start: npm start
+#          #          start-windows: npm run start:windows:server
+#          wait-on: http://localhost:8000
+
   deploy:
     runs-on: ubuntu-latest
-    needs: build
+    needs: [ build, cypress-chrome, cypress-firefox, cypress-edge ]
     steps:
 
       - name: Checkout Repository
