@@ -39,7 +39,9 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: build
-          path: public
+          path: |
+            public
+            .cache
           retention-days: 1
 
   cypress-chrome:
@@ -56,7 +58,7 @@ jobs:
         uses: actions/download-artifact@v2
         with:
           name: build
-          path: public
+          path: ./
 
       - uses: cypress-io/github-action@v2
         with:
