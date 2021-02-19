@@ -29,19 +29,19 @@ jobs:
         with:
           node-version: '12'
 
-      - name: NPM Install
-        run: npm ci
-
-      - name: NPM Build
-        run: npm run build
-
       - name: Cache
         uses: actions/cache@v2
         with:
           path: |
             .cache
-            node_modules
-        key: ${{ runner.os }}-node12-${{ hashFiles('package-lock.json') }}
+            **/node_modules
+          key: ${{ runner.os }}-node12-${{ hashFiles('**/node-modules') }}
+
+      - name: NPM Install
+        run: npm ci
+
+      - name: NPM Build
+        run: npm run build
 
       - name: Upload Artifacts - Build
         uses: actions/upload-artifact@v2
