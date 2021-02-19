@@ -57,9 +57,6 @@ jobs:
       matrix:
         os: [ macos-latest, windows-latest, ubuntu-latest ]
         browser: [ chrome, edge, firefox ]
-        include:
-          - os: ubuntu-latest
-            browser: edge-dev
         exclude:  # TODO: Once edge has properly been released for Linux this can be removed.
           - os: ubuntu-latest
             browser: edge
