@@ -87,7 +87,7 @@ jobs:
     needs: build
     strategy:
       matrix:
-        os: [ macos-latest, windows-latest, ubuntu-latest ]
+        os: [ macos-latest, windows-latest ]
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v2
