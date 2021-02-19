@@ -48,6 +48,7 @@ jobs:
     runs-on: ${{ matrix.os }}
     needs: build
     strategy:
+      fail-fast: false
       matrix:
         os: [ macos-latest, windows-latest, ubuntu-latest ]
     steps:
@@ -71,6 +72,7 @@ jobs:
     runs-on: ${{ matrix.os }}
     needs: build
     strategy:
+      fail-fast: false
       matrix:
         os: [ macos-latest, windows-latest, ubuntu-latest ]
     steps:
@@ -85,28 +87,29 @@ jobs:
           start: npm start
           wait-on: http://localhost:9000
 
-#  cypress-edge:
-#    runs-on: ${{ matrix.os }}
-#    needs: build
-#    strategy:
-#      matrix:
-#        os: [ macos-latest, windows-latest ]
-#    steps:
-#      - name: Checkout Repository
-#        uses: actions/checkout@v2
-#
-#      - name: Download Artifacts
-#        uses: actions/download-artifact@v2
-#        with:
-#          name: build
-#          path: ./
-#
-#      - name: Cypress
-#        uses: cypress-io/github-action@v2
-#        with:
-#          browser: edge
-#          start: npm run serve
-#          wait-on: http://localhost:9000
+  cypress-edge:
+    runs-on: ${{ matrix.os }}
+    needs: build
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ macos-latest, windows-latest ]
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+
+      - name: Download Artifacts
+        uses: actions/download-artifact@v2
+        with:
+          name: build
+          path: ./
+
+      - name: Cypress
+        uses: cypress-io/github-action@v2
+        with:
+          browser: edge
+          start: npm run serve
+          wait-on: http://localhost:9000
 
 #  deploy:
 #    runs-on: ubuntu-latest
