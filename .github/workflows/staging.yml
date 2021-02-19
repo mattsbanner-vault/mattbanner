@@ -42,7 +42,6 @@ jobs:
           path: |
             public
             .cache
-          retention-days: 1
 
   cypress:
     runs-on: ${{ matrix.os }}
@@ -72,6 +71,14 @@ jobs:
           browser: ${{ matrix.browser }}
           start: npm run serve
           wait-on: http://localhost:8000
+
+      - name: Upload Artifacts
+        uses: actions/upload-artifact@v2
+        with:
+          name: cypress
+          path: |
+            cypress/screenshots
+            cypress/videos
 
       - name: Update Deployment Status (Failure)
         if: failure()
