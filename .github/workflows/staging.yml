@@ -1,4 +1,4 @@
-name: Staging
+name: Dev # TODO: Change this before merging back in.
 
 on:
   push:
@@ -83,8 +83,11 @@ jobs:
 #          wait-on: http://localhost:8000
 #
   cypress-edge:
-    runs-on: [ macos-latest, windows-latest, ubuntu-latest ]
+    runs-on: ${{ matrix.os }}
     needs: build
+    strategy:
+      matrix:
+        os: [ macos-latest, windows-latest, ubuntu-latest ]
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v2
