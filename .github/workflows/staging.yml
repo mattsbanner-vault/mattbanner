@@ -96,7 +96,8 @@ jobs:
 
   deploy:
     runs-on: ubuntu-latest
-    needs: [ build, cypress-chrome, cypress-firefox, cypress-edge ]
+#    needs: [ build, cypress-chrome, cypress-firefox, cypress-edge ]
+    needs: [ build, cypress-chrome ]
     steps:
 
       - name: Checkout Repository
