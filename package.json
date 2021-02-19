@@ -42,9 +42,7 @@
     "serve": "gatsby serve -p 8000",
     "clean": "gatsby clean",
     "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing\" && exit 1",
-    "cypress": "cypress open",
-    "cypress:run": "cypress run",
-    "cypress:test": "start-server-and-test develop http://localhost:8000 cypress:run"
+    "cypress": "cypress open"
   },
   "repository": {
     "type": "git",
