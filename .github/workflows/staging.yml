@@ -35,13 +35,20 @@ jobs:
       - name: NPM Build
         run: npm run build
 
-      - name: Upload Artifacts
+      - name: Upload Artifacts - Caches
+        uses: actions/upload-artifact@v2
+        with:
+          name: caches
+          path: |
+            .cache
+            node_modules
+          retention-days: 3
+
+      - name: Upload Artifacts - Build
         uses: actions/upload-artifact@v2
         with:
           name: build
-          path: |
-            public
-            .cache
+          path: public
 
   cypress:
     runs-on: ${{ matrix.os }}
@@ -59,11 +66,17 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v2
 
-      - name: Download Artifacts
+      - name: Download Artifacts - Caches
+        uses: actions/download-artifact@v2
+        with:
+          name: caches
+          path: ./
+
+      - name: Download Artifacts - Build
         uses: actions/download-artifact@v2
         with:
           name: build
-          path: ./
+          path: public
 
       - name: Cypress
         uses: cypress-io/github-action@v2
@@ -72,7 +85,7 @@ jobs:
           start: npm run serve
           wait-on: http://localhost:8000
 
-      - name: Upload Artifacts
+      - name: Upload Artifacts - Cypress Evidence
         uses: actions/upload-artifact@v2
         with:
           name: cypress
@@ -97,11 +110,11 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v2
 
-      - name: Download Artifacts
+      - name: Download Artifacts - Build
         uses: actions/download-artifact@v2
         with:
           name: build
-          path: ./
+          path: public
 
       - name: Configure AWS
         uses: aws-actions/configure-aws-credentials@v1
