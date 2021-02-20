@@ -12,9 +12,10 @@ exports.createPages = ({ graphql, actions }) => {
 
     return graphql(
     `
-      query BlogPostsQuery {
+      query PagesQuery {
         pages: allCraftPagesPagesEntry {
           nodes {
+            uri
             remoteId
             slug
           }
@@ -31,7 +32,7 @@ exports.createPages = ({ graphql, actions }) => {
 
         pages.forEach(post => {
             createPage({
-                path: `/${post.slug}`,
+                path: `/${post.uri}`,
                 component: pageTemplate,
                 context: {
                     slug: post.slug,
