@@ -1,7 +1,42 @@
 /**
  * Implement Gatsby's Node APIs in this file.
  *
- * See: https://www.gatsbyjs.com/docs/node-apis/
+ * See: https://www.gatsbyjs.org/docs/node-apis/
  */
 
-// You can delete this file if you're not using it
+const path = require(`path`)
+
+exports.createPages = ({ graphql, actions }) => {
+    const { createPage } = actions
+    const pageTemplate = path.resolve(`src/templates/page.js`)
+
+    return graphql(
+    `
+      query BlogPostsQuery {
+        pages: allCraftPagesPagesEntry {
+          nodes {
+            remoteId
+            slug
+          }
+        }
+      }
+    `,
+    { limit: 1000 }
+    ).then(result => {
+        if (result.errors) {
+            throw result.errors
+        }
+
+        const pages = result.data.pages.nodes
+
+        pages.forEach(post => {
+            createPage({
+                path: `/${post.slug}`,
+                component: pageTemplate,
+                context: {
+                    slug: post.slug,
+                },
+            })
+        })
+    })
+}
