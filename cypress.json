@@ -1,4 +1,8 @@
 {
   "baseUrl": "http://localhost:8000/",
-  "chromeWebSecurity": false
+  "chromeWebSecurity": false,
+  "env": {
+    "siteName":  "Matt Banner",
+    "emailAddress": "hello@mattbanner.co.uk"
+  }
 }

@@ -18,6 +18,7 @@ const IndexPage = () => (
       
       <div className={`mt-6`}>
         <a
+          id={`contact-me-button`}
           href="mailto:hello@mattbanner.co.uk"
           className={`px-4 py-2 rounded shadow text-white bg-blue-600 hover:bg-blue-700 border border-blue-600 transition duration-300 ease-in-out`}
         >Contact Me</a>
