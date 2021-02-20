@@ -1,6 +1,6 @@
 import React from "react"
 
-import { graphql } from 'gatsby'
+import {graphql, Link} from 'gatsby'
 import Layout from "../components/layout"
 import SEO from "../components/seo"
 import Matrix from "../components/matrix"
@@ -13,7 +13,9 @@ export const query = graphql`
       title
       postDate
       bodyContent {
+        ...LeadTextFragment
         ...RichTextFragment
+        ...ButtonFragment
       }
     }
   }
@@ -22,10 +24,21 @@ export const query = graphql`
 const Page = ({ data: { entry } }) => {
     return (
         <Layout>
-            <SEO title={entry.title} />
-            <h1>{entry.title}</h1>
+            <SEO title={entry.title} description={entry.summary} />
 
-            <Matrix blocks={entry.bodyContent} />
+            <header className={`max-w-3xl mx-auto w-full`}>
+                <p className={`text-3xl font-bold my-2 sm:mt-4 sm:mb-6`}>
+                    <Link to="/">
+                        Matt Banner
+                    </Link>
+                </p>
+            </header>
+
+            <main className={`max-w-3xl mx-auto w-full flex-grow`}>
+                <h1 className={`text-xl mb-6`}>{entry.title}</h1>
+
+                <Matrix blocks={entry.bodyContent} />
+            </main>
         </Layout>
     )
 }

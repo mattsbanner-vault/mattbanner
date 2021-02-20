@@ -1,10 +1,14 @@
 import React from "react"
-
-import RichText from "./types/richText"
 import { graphql } from 'gatsby'
 
+import LeadText from "./types/leadText"
+import RichText from "./types/richText"
+import Button from "./types/button"
+
 const components = {
+    leadText: LeadText,
     richText: RichText,
+    button: Button,
 }
 
 const Block = props => {
@@ -32,8 +36,20 @@ const Blocks = ({ blocks }) => {
 export default Blocks
 
 export const query = graphql`
+  fragment LeadTextFragment on Craft_bodyContent_leadText_BlockType {
+    leadText
+    typeHandle
+  }
+  
   fragment RichTextFragment on Craft_bodyContent_richText_BlockType {
     richText
+    typeHandle
+  }
+  
+  fragment ButtonFragment on Craft_bodyContent_button_BlockType {
+    buttonText
+    buttonLink
+    buttonColour
     typeHandle
   }
 `

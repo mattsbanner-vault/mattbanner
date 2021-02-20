@@ -2,7 +2,7 @@ import React from "react"
 
 const RichText = ({ block }) => (
     <div
-        className="rich-text clearfix"
+        className="prose"
         dangerouslySetInnerHTML={{
             __html: block.richText,
         }}
