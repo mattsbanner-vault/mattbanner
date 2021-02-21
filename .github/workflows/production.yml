@@ -19,7 +19,7 @@ jobs:
         uses: chrnorm/deployment-action@releases/v1
         id: deployment
         with:
-          environment: production
+          environment: staging
           initial_status: "pending"
           target_url: ${{ secrets.PRODUCTION_URL }}
           token: "${{ github.token }}"
@@ -29,20 +29,25 @@ jobs:
         with:
           node-version: '12'
 
+      - name: Cache
+        uses: actions/cache@v2
+        with:
+          path: |
+            **/.cache
+            node_modules
+          key: ${{ runner.os }}-node12-${{ hashFiles('package-lock.json') }}
+
       - name: NPM Install
         run: npm ci
 
       - name: NPM Build
         run: npm run production
 
-      - name: Upload Artifacts
+      - name: Upload Artifacts - Build
         uses: actions/upload-artifact@v2
         with:
           name: build
-          path: |
-            public
-            .cache
-          retention-days: 1
+          path: public
 
   cypress:
     runs-on: ${{ matrix.os }}
@@ -60,18 +65,44 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v2
 
-      - name: Download Artifacts
+      - name: Cache
+        uses: actions/cache@v2
+        with:
+          path: |
+            .cache
+            node_modules
+          key: ${{ runner.os }}-node12-${{ hashFiles('package-lock.json') }}
+
+      - name: Download Artifacts - Build
         uses: actions/download-artifact@v2
         with:
           name: build
-          path: ./
+          path: public
 
       - name: Cypress
         uses: cypress-io/github-action@v2
         with:
+          install-command: npm install
           browser: ${{ matrix.browser }}
           start: npm run serve
           wait-on: http://localhost:8000
+
+      - name: Upload Artifacts - Cypress Evidence
+        uses: actions/upload-artifact@v2
+        with:
+          name: cypress-${{ matrix.os }}-${{ matrix.browser }}
+          path: |
+            cypress/screenshots
+            cypress/videos
+
+      - name: Update Deployment Status (Failure)
+        if: failure()
+        uses: chrnorm/deployment-status@releases/v1
+        with:
+          deployment_id: ${{ needs.build.outputs.deployment_id }}
+          target_url: ${{ secrets.PRODUCTION_URL }}
+          state: "failure"
+          token: "${{ github.token }}"
 
   deploy:
     runs-on: ubuntu-latest
@@ -81,11 +112,11 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v2
 
-      - name: Download Artifacts
+      - name: Download Artifacts - Build
         uses: actions/download-artifact@v2
         with:
           name: build
-          path: ./
+          path: public
 
       - name: Configure AWS
         uses: aws-actions/configure-aws-credentials@v1
