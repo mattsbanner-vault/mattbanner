@@ -33,7 +33,7 @@ jobs:
         uses: actions/cache@v2
         with:
           path: |
-            .cache
+            **/.cache
             node_modules
           key: ${{ runner.os }}-node12-${{ hashFiles('package-lock.json') }}
 
