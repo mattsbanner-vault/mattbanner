@@ -4,11 +4,13 @@ import { graphql } from 'gatsby'
 import LeadText from "./types/leadText"
 import RichText from "./types/richText"
 import Button from "./types/button"
+import Heading from "./types/heading"
 
 const components = {
     leadText: LeadText,
     richText: RichText,
     button: Button,
+    heading: Heading,
 }
 
 const Block = props => {
@@ -36,6 +38,18 @@ const Blocks = ({ blocks }) => {
 export default Blocks
 
 export const query = graphql`
+  fragment ButtonFragment on Craft_bodyContent_button_BlockType {
+    buttonText
+    buttonLink
+    typeHandle
+  }
+  
+  fragment HeadingFragment on Craft_bodyContent_heading_BlockType {
+    headingText
+    headingStyle
+    typeHandle
+  }
+  
   fragment LeadTextFragment on Craft_bodyContent_leadText_BlockType {
     leadText
     typeHandle
@@ -45,11 +59,5 @@ export const query = graphql`
     richText
     typeHandle
   }
-  
-  fragment ButtonFragment on Craft_bodyContent_button_BlockType {
-    buttonText
-    buttonLink
-    buttonColour
-    typeHandle
-  }
+ 
 `

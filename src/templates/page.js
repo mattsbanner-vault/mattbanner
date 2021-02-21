@@ -16,12 +16,14 @@ export const query = graphql`
         ...LeadTextFragment
         ...RichTextFragment
         ...ButtonFragment
+        ...HeadingFragment
       }
     }
   }
 `
 
 const Page = ({ data: { entry } }) => {
+    console.log(entry);
     return (
         <Layout>
             <SEO title={entry.title} description={entry.summary} />
@@ -37,7 +39,9 @@ const Page = ({ data: { entry } }) => {
             <main className={`max-w-3xl mx-auto w-full flex-grow`}>
                 <h1 className={`text-xl mb-6`}>{entry.title}</h1>
 
-                <Matrix blocks={entry.bodyContent} />
+                <div className={`prose`}>
+                    <Matrix blocks={entry.bodyContent} />
+                </div>
             </main>
         </Layout>
     )
