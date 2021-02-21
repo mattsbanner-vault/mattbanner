@@ -39,8 +39,9 @@ export default Blocks
 
 export const query = graphql`
   fragment ButtonFragment on Craft_bodyContent_button_BlockType {
-    buttonText
+    buttonId
     buttonLink
+    buttonText
     typeHandle
   }
   
