@@ -66,7 +66,6 @@ jobs:
       - name: Cypress
         uses: cypress-io/github-action@v2
         with:
-          install-command: npm install
           browser: ${{ matrix.browser }}
           start: npm run serve
           wait-on: http://localhost:8000
