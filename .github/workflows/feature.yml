@@ -1,0 +1,87 @@
+name: Feature
+
+on:
+  push:
+    branches:
+      - '**'
+      - '!main'
+      - '!develop'
+
+jobs:
+
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@master
+
+      - name: Setup Node
+        uses: actions/setup-node@v1
+        with:
+          node-version: '12'
+
+      - name: Cache
+        uses: actions/cache@v2
+        with:
+          path: |
+            .cache
+            node_modules
+          key: ${{ runner.os }}-node12-${{ hashFiles('package-lock.json') }}
+
+      - name: NPM Install
+        run: npm ci
+
+      - name: NPM Build
+        run: npm run build
+
+      - name: Upload Artifacts - Build
+        uses: actions/upload-artifact@v2
+        with:
+          name: build
+          path: public
+
+  cypress:
+    runs-on: ${{ matrix.os }}
+    needs: build
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ macos-latest, windows-latest, ubuntu-latest ]
+        browser: [ chrome, edge, firefox ]
+        exclude:  # TODO: Once edge has properly been released for Linux this can be removed.
+          - os: ubuntu-latest
+            browser: edge
+    steps:
+
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+
+      - name: Cache
+        uses: actions/cache@v2
+        with:
+          path: |
+            .cache
+            node_modules
+          key: ${{ runner.os }}-node12-${{ hashFiles('package-lock.json') }}
+
+      - name: Download Artifacts - Build
+        uses: actions/download-artifact@v2
+        with:
+          name: build
+          path: public
+
+      - name: Cypress
+        uses: cypress-io/github-action@v2
+        with:
+          install-command: npm install
+          browser: ${{ matrix.browser }}
+          start: npm run serve
+          wait-on: http://localhost:8000
+
+      - name: Upload Artifacts - Cypress Evidence
+        uses: actions/upload-artifact@v2
+        with:
+          name: cypress-${{ matrix.os }}-${{ matrix.browser }}
+          path: |
+            cypress/screenshots
+            cypress/videos
