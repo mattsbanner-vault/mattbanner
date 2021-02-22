@@ -34,6 +34,9 @@ jobs:
 
       - name: NPM Build
         run: npm run build
+        env:
+          CRAFTGQL_URL: ${{ secrets.CONTENT_URL }}
+          CRAFTGQL_TOKEN: ${{ secrets.CONTENT_TOKEN }}
 
       - name: Upload Artifacts - Build
         uses: actions/upload-artifact@v2
