@@ -29,14 +29,6 @@ jobs:
         with:
           node-version: '12'
 
-      - name: Cache
-        uses: actions/cache@v2
-        with:
-          path: |
-            .cache
-            node_modules
-          key: ${{ runner.os }}-node12-${{ hashFiles('package-lock.json') }}
-
       - name: NPM Install
         run: npm ci
 
@@ -65,14 +57,6 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v2
 
-      - name: Cache
-        uses: actions/cache@v2
-        with:
-          path: |
-            .cache
-            node_modules
-          key: ${{ runner.os }}-node12-${{ hashFiles('package-lock.json') }}
-
       - name: Download Artifacts - Build
         uses: actions/download-artifact@v2
         with:
@@ -82,7 +66,6 @@ jobs:
       - name: Cypress
         uses: cypress-io/github-action@v2
         with:
-          install-command: npm install
           browser: ${{ matrix.browser }}
           start: npm run serve
           wait-on: http://localhost:8000

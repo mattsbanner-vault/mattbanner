@@ -1,3 +1,7 @@
+require("dotenv").config({
+  path: `.env`,
+});
+
 const dynamicPlugins = [];
 if (process.env.APP_ENV === 'production') {
   dynamicPlugins.push(
@@ -45,6 +49,12 @@ module.exports = {
         icon: `src/images/memoji-logo.png`, // This path is relative to the root of the site.
       },
     },
-    `gatsby-plugin-offline`
+    `gatsby-plugin-offline`,
+    {
+      resolve: "gatsby-source-craft",
+      options: {
+        enabledSites: [`mattBanner`]
+      }
+    }
   ],
 }
