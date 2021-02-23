@@ -46,6 +46,7 @@ export const query = graphql`
   }
   
   fragment HeadingFragment on Craft_bodyContent_heading_BlockType {
+    headingLink
     headingText
     headingStyle
     typeHandle
