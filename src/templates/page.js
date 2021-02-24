@@ -23,28 +23,31 @@ export const query = graphql`
 `
 
 const Page = ({ data: { entry } }) => {
-    console.log(entry);
     return (
         <Layout>
             <SEO title={entry.title} description={entry.summary} />
 
             <header className={`max-w-3xl mx-auto w-full`}>
-                <p className={`text-3xl font-bold my-2 sm:mt-4 sm:mb-6`}>
-                    <Link to="/">
-                        Matt Banner
-                    </Link>
-                </p>
+                <div className={`mx-4`}>
+                    <p className={`text-3xl font-bold my-4 sm:my-6`}>
+                        <Link to="/">
+                            Matt Banner
+                        </Link>
+                    </p>
+                </div>
             </header>
 
             <main className={`max-w-3xl mx-auto w-full flex-grow`}>
-                <h1 className={`text-xl mb-6`}>{entry.title}</h1>
+                <div className={`mx-4`}>
+                    <h1 className={`text-xl mb-6`}>{entry.title}</h1>
 
-                <div className={`prose`}>
-                    <Matrix blocks={entry.bodyContent} />
+                    <div className={`prose`}>
+                        <Matrix blocks={entry.bodyContent} />
+                    </div>
                 </div>
-            </main>
+             </main>
         </Layout>
     )
-}
+};
 
 export default Page

@@ -19,14 +19,14 @@ export const query = graphql`
       }
     }
   }
-`
+`;
 
 const IndexPage = ({ data: { entry } }) => (
   <Layout>
     <SEO title="Home" />
 
     <main className={`max-w-3xl mx-auto w-full flex-grow flex items-center tracking-tight`}>
-        <div>
+        <div className={`mx-4`}>
             <h1 className={`text-4xl font-bold mb-2`}>
                 <Link to="/">
                     Matt Banner
@@ -36,8 +36,7 @@ const IndexPage = ({ data: { entry } }) => (
             <Matrix blocks={entry.bodyContent} />
         </div>
     </main>
-
   </Layout>
-)
+);
 
 export default IndexPage

@@ -6,7 +6,7 @@ import Footer from "./footer"
 
 const Layout = ({ children }) => {
   return (
-    <Div100vh className="flex flex-col p-4 font-sans">
+    <Div100vh className="flex flex-col font-sans">
       {children}
       <Footer/>
     </Div100vh> 
