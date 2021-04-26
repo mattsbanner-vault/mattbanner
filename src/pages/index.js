@@ -25,7 +25,7 @@ const IndexPage = ({ data: { entry } }) => (
   <Layout>
     <SEO title="Home" />
 
-    <main className={`max-w-3xl mx-auto w-full flex-grow flex items-center tracking-tight`}>
+    <main className={`max-w-4xl mx-auto w-full flex-grow flex items-center tracking-tight`}>
         <div className={`mx-4`}>
             <h1 className={`text-4xl font-bold mb-2`}>
                 <Link to="/">

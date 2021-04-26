@@ -8,7 +8,7 @@ const NotFoundPage = () => (
     <Layout>
         <SEO title="404 - Not Found" />
 
-        <main className={`max-w-3xl mx-auto w-full flex-grow flex items-center tracking-tight`}>
+        <main className={`max-w-4xl mx-auto w-full flex-grow flex items-center tracking-tight`}>
             <div className={`mx-4`}>
                 <h1 className={`text-4xl font-bold mb-2`}>404 - Not Found</h1>
                 <p className={`text-lg`}>The page you requested could not be found.</p>

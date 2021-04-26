@@ -27,7 +27,7 @@ const Page = ({ data: { entry } }) => {
         <Layout>
             <SEO title={entry.title} description={entry.summary} />
 
-            <header className={`max-w-3xl mx-auto w-full`}>
+            <header className={`max-w-4xl mx-auto w-full`}>
                 <div className={`mx-4`}>
                     <p className={`text-3xl font-bold my-4 sm:my-6`}>
                         <Link to="/">
@@ -37,7 +37,7 @@ const Page = ({ data: { entry } }) => {
                 </div>
             </header>
 
-            <main className={`max-w-3xl mx-auto w-full flex-grow`}>
+            <main className={`max-w-4xl mx-auto w-full flex-grow`}>
                 <div className={`mx-4`}>
                     <h1 className={`text-xl mb-6`}>{entry.title}</h1>
 
