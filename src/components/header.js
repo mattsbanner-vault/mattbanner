@@ -63,9 +63,9 @@ const Header = () => (
           <Disclosure.Panel className="sm:hidden">
             <div className="px-2 pt-2 pb-3 space-y-1">
               {navigation.map((item) => (
-                <a
+                <Link
                   key={item.name}
-                  href={item.href}
+                  to={item.href}
                   className={classNames(
                     item.current ? 'bg-primary-lightest text-primary-copy' : 'text-gray-500 hover:bg-primary hover:text-primary-copy',
                     'block px-3 py-2 rounded-md text-base font-medium'
@@ -73,7 +73,7 @@ const Header = () => (
                   aria-current={item.current ? 'page' : undefined}
                 >
                   {item.name}
-                </a>
+                </Link>
               ))}
             </div>
           </Disclosure.Panel>
