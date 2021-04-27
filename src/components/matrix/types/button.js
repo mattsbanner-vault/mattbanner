@@ -2,8 +2,7 @@ import React from "react"
 import { Link } from "gatsby"
 
 function craftBaseUrl() {
-    let craftGraphQLUrl = process.env.CRAFTGQL_URL;
-    let parts = craftGraphQLUrl.split("/");
+    let parts = process.env.CRAFTGQL_URL.split("/");
     return parts[0] + '//' + parts[2];
 }
 

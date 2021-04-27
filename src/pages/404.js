@@ -1,21 +1,35 @@
 import React from "react"
-import { Link } from "gatsby"
-
 import Layout from "../components/layout"
-import SEO from "../components/seo"
+import {graphql} from "gatsby"
+import Matrix from "../components/matrix";
 
-const NotFoundPage = () => (
-    <Layout>
-        <SEO title="404 - Not Found" />
+export const query = graphql`
+  query {
+    entry: craftNotFoundNotFoundEntry {
+      id
+      remoteId
+      title
+      postDate
+      slug
+      bodyContent {
+        ...LeadTextFragment
+        ...RichTextFragment
+        ...ButtonFragment
+        ...HeadingFragment
+      }
+    }
+  }
+`;
 
-        <main className={`max-w-4xl mx-auto w-full flex-grow flex items-center tracking-tight`}>
-            <div className={`mx-4`}>
-                <h1 className={`text-4xl font-bold mb-2`}>404 - Not Found</h1>
-                <p className={`text-lg`}>The page you requested could not be found.</p>
-                <Link to={`/`} className={`text-gray-500 hover:text-gray-800 transition duration-300 ease-in-out`}>Home</Link>
-            </div>
-        </main>
-    </Layout>
-)
+const NotFound = ({ data: { entry } }) => (
+  <Layout entry={entry}>
 
-export default NotFoundPage
+    <main className={`max-w-4xl mx-auto w-full flex-grow flex items-center`}>
+        <div className={`mx-4 text-center`}>
+            <Matrix blocks={entry.bodyContent} />
+        </div>
+    </main>
+</Layout>
+);
+
+export default NotFound
