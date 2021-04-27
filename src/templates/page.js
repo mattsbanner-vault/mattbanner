@@ -1,9 +1,6 @@
 import React from "react"
-
 import {graphql} from 'gatsby'
 import Layout from "../components/layout"
-import Header from "../components/header"
-import SEO from "../components/seo"
 import Matrix from "../components/matrix"
 
 export const query = graphql`
@@ -12,6 +9,7 @@ export const query = graphql`
       id
       remoteId
       title
+      slug
       postDate
       bodyContent {
         ...LeadTextFragment
@@ -25,11 +23,7 @@ export const query = graphql`
 
 const Page = ({ data: { entry } }) => {
     return (
-        <Layout>
-            <SEO title={entry.title} description={entry.summary} />
-
-            <Header/>
-
+        <Layout entry={entry}>
             <main className={`max-w-4xl mx-auto w-full flex-grow`}>
                 <div className={`mx-4`}>
                     <h1 className={`text-xl mb-6`}>{entry.title}</h1>

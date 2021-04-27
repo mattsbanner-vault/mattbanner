@@ -30,7 +30,7 @@
   },
   "devDependencies": {
     "cross-env": "^7.0.3",
-    "cypress": "^6.9.1",
+    "cypress": "^7.2.0",
     "gatsby-source-craft": "^1.0.0",
     "prettier": "2.2.1"
   },

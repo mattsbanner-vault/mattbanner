@@ -15,7 +15,7 @@ function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
 }
 
-const Header = () => (
+const Header = ({ entry }) => (
 <Disclosure as="nav">
       {({ open }) => (
         <>
@@ -34,9 +34,8 @@ const Header = () => (
               </div>
               <div className="flex-1 flex items-center justify-center sm:items-stretch sm:justify-between">
                 <div className="flex-shrink-0 flex items-center">
-                  {/* TODO: This should be a <p> when not on the homepage. */}
                   <Link to="/">
-                    <h1 className="text-xl sm:text-3xl font-bold">Matt Banner</h1>
+                    {entry.slug !== 'home' && <p className="text-xl sm:text-3xl font-bold">Matt Banner</p>}
                   </Link>
                 </div>
                 <div className="hidden sm:block sm:ml-6">

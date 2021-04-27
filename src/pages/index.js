@@ -1,7 +1,6 @@
 import React from "react"
 import Layout from "../components/layout"
-import SEO from "../components/seo"
-import {graphql, Link} from "gatsby"
+import {graphql} from "gatsby"
 import Matrix from "../components/matrix";
 
 export const query = graphql`
@@ -11,6 +10,7 @@ export const query = graphql`
       remoteId
       title
       postDate
+      slug
       bodyContent {
         ...LeadTextFragment
         ...RichTextFragment
@@ -22,21 +22,15 @@ export const query = graphql`
 `;
 
 const IndexPage = ({ data: { entry } }) => (
-  <Layout>
-    <SEO title="Home" />
+  <Layout entry={entry}>
 
-    <main className={`max-w-4xl mx-auto w-full flex-grow flex items-center tracking-tight`}>
-        <div className={`mx-4`}>
-            <h1 className={`text-4xl font-bold mb-2`}>
-                <Link to="/">
-                    Matt Banner
-                </Link>
-            </h1>
-
+    <main className={`max-w-4xl mx-auto w-full flex-grow flex items-center`}>
+        <div className={`mx-4 text-center`}>
+            <h1 className="text-4xl font-bold">Matt Banner</h1>
             <Matrix blocks={entry.bodyContent} />
         </div>
     </main>
-  </Layout>
+</Layout>
 );
 
 export default IndexPage
