@@ -55,6 +55,12 @@ module.exports = {
       options: {
         enabledSites: [`mattBanner`]
       }
-    }
+    },
+    {
+      resolve: `gatsby-plugin-env-variables`,
+      options: {
+        allowList: ["CRAFTGQL_URL"]
+      },
+    },
   ],
 }
