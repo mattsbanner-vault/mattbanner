@@ -1,7 +1,8 @@
 import React from "react"
 
-import {graphql, Link} from 'gatsby'
+import {graphql} from 'gatsby'
 import Layout from "../components/layout"
+import Header from "../components/header"
 import SEO from "../components/seo"
 import Matrix from "../components/matrix"
 
@@ -27,15 +28,7 @@ const Page = ({ data: { entry } }) => {
         <Layout>
             <SEO title={entry.title} description={entry.summary} />
 
-            <header className={`max-w-4xl mx-auto w-full`}>
-                <div className={`mx-4`}>
-                    <p className={`text-3xl font-bold my-4 sm:my-6`}>
-                        <Link to="/">
-                            Matt Banner
-                        </Link>
-                    </p>
-                </div>
-            </header>
+            <Header/>
 
             <main className={`max-w-4xl mx-auto w-full flex-grow`}>
                 <div className={`mx-4`}>
