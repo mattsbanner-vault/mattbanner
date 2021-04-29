@@ -20,7 +20,7 @@ function link(block) {
             <Link
                 id={ block.buttonId ? block.buttonId : '' }
                 to={ path(block.buttonLink) }
-                className={`px-4 py-2 rounded shadow bg-primary-lightest text-primary-copy hover:bg-primary transition duration-300 ease-in-out`}
+                className={`px-4 py-2 rounded shadow bg-primary text-primary-copy hover:bg-primary-lightest transition duration-300 ease-in-out`}
             >
                 { block.buttonText }
             </Link>
@@ -30,7 +30,7 @@ function link(block) {
             <a
                 id={ block.buttonId ? block.buttonId : '' }
                 href={ block.buttonLink }
-                className={`px-4 py-2 rounded shadow bg-primary-lightest text-primary-copy hover:bg-primary transition duration-300 ease-in-out`}
+                className={`px-4 py-2 rounded shadow bg-primary text-primary-copy hover:bg-primary-lightest transition duration-300 ease-in-out`}
             >
                 { block.buttonText }
             </a>

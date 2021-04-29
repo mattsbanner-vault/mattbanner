@@ -23,7 +23,7 @@ const Header = ({ entry }) => (
             <div className="relative flex items-center justify-between h-16">
               <div className="absolute inset-y-0 left-0 flex items-center sm:hidden">
                 {/* Mobile menu button*/}
-                <Disclosure.Button className="inline-flex items-center justify-center p-2 rounded-md text-gray-500 hover:text-primary-copy hover:bg-primary focus:outline-none focus:ring-2 focus:ring-inset focus:ring-primary-lightest">
+                <Disclosure.Button className="inline-flex items-center justify-center p-2 rounded-md text-gray-500 hover:text-primary-copy hover:bg-primary-lightest focus:outline-none focus:ring-2 focus:ring-inset focus:ring-primary">
                   <span className="sr-only">Open main menu</span>
                   {open ? (
                     <XIcon className="block h-6 w-6" aria-hidden="true" />
@@ -45,8 +45,8 @@ const Header = ({ entry }) => (
                         key={item.name}
                         to={item.href}
                         className={classNames(
-                          item.current ? 'bg-primary-light text-primary-copy' : 'text-gray-500 hover:bg-primary hover:text-primary-copy',
-                          'px-3 py-2 rounded-md text-sm font-medium'
+                          item.current ? 'bg-primary text-primary-copy' : 'text-gray-500 hover:bg-primary-lightest hover:text-primary-copy ',
+                          'px-3 py-2 rounded-md text-sm font-medium transition duration-300 ease-in-out'
                         )}
                         aria-current={item.current ? 'page' : undefined}
                       >
@@ -66,8 +66,8 @@ const Header = ({ entry }) => (
                   key={item.name}
                   to={item.href}
                   className={classNames(
-                    item.current ? 'bg-primary-lightest text-primary-copy' : 'text-gray-500 hover:bg-primary hover:text-primary-copy',
-                    'block px-3 py-2 rounded-md text-base font-medium'
+                    item.current ? 'bg-primary text-primary-copy' : 'text-gray-500 hover:bg-primary-lightest hover:text-primary-copy',
+                    'block px-3 py-2 rounded-md text-base font-medium transition duration-300 ease-in-out'
                   )}
                   aria-current={item.current ? 'page' : undefined}
                 >
