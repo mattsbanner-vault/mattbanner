@@ -1,4 +1,4 @@
-import { Link } from "gatsby"
+import { Link, StaticQuery, graphql } from "gatsby"
 import PropTypes from "prop-types"
 import React from "react"
 import { Disclosure, } from '@headlessui/react'
@@ -15,10 +15,31 @@ function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
 }
 
-const Header = ({ entry }) => (
-<Disclosure as="nav">
+export default function Header({ entry }) {
+  return (
+    <StaticQuery
+      query={graphql`
+        query {
+          entry: craftNotFoundNotFoundEntry {
+            id
+            remoteId
+            title
+            postDate
+            slug
+            bodyContent {
+              ...LeadTextFragment
+              ...RichTextFragment
+              ...ButtonFragment
+              ...HeadingFragment
+            }
+          }
+        }
+      `}
+      render={data => (
+        <Disclosure as="nav">
       {({ open }) => (
         <>
+    <p>title {data.title}</p>
           <div className="max-w-4xl mx-auto px-2 sm:px-4 py-2">
             <div className="relative flex items-center justify-between h-16">
               <div className="absolute inset-y-0 left-0 flex items-center sm:hidden">
@@ -79,7 +100,10 @@ const Header = ({ entry }) => (
         </>
       )}
     </Disclosure>
-)
+      )}
+    />
+  )
+}
 
 Header.propTypes = {
   siteTitle: PropTypes.string,
@@ -88,5 +112,3 @@ Header.propTypes = {
 Header.defaultProps = {
   siteTitle: ``,
 }
-
-export default Header
