@@ -21,8 +21,8 @@ export const query = graphql`
   }
 `;
 
-const NotFound = ({ data: { entry } }) => (
-  <Layout entry={entry}>
+const NotFound = ({ location, data: { entry } }) => (
+  <Layout location={ location } entry={ entry }>
     <main className={`max-w-4xl mx-auto w-full flex-grow flex items-center`}>
         <div className={`mx-4 text-center`}>
             <Matrix blocks={entry.bodyContent} />

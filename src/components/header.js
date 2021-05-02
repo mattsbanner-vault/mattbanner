@@ -8,11 +8,11 @@ function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
 }
 
-function isCurrent(uri) {
-  return false;
+function isCurrent(item, location) {
+  return location.pathname === ('/' + item.uri);
 }
 
-export default function Header({ entry }) {
+export default function Header({ location, entry }) {
   return (
     <StaticQuery
       query={graphql`
@@ -57,10 +57,10 @@ export default function Header({ entry }) {
                         key={item.id}
                         to={`/` + item.uri}
                         className={classNames(
-                            isCurrent(item.uri) ? 'bg-primary text-primary-copy' : 'text-gray-500 hover:bg-primary-lightest hover:text-primary-copy ',
+                            isCurrent(item, location) ? 'bg-primary text-primary-copy' : 'text-gray-500 hover:bg-primary-lightest hover:text-primary-copy ',
                           'px-3 py-2 rounded-md text-sm font-medium transition duration-300 ease-in-out'
                         )}
-                        aria-current={isCurrent(item.uri) ? 'page' : undefined}
+                        aria-current={isCurrent(item, location) ? 'page' : undefined}
                       >
                         {item.title}
                       </Link>
@@ -78,10 +78,10 @@ export default function Header({ entry }) {
                   key={item.id}
                   to={`/` + item.uri}
                   className={classNames(
-                      isCurrent(item.uri) ? 'bg-primary text-primary-copy' : 'text-gray-500 hover:bg-primary-lightest hover:text-primary-copy',
+                      isCurrent(item, location) ? 'bg-primary text-primary-copy' : 'text-gray-500 hover:bg-primary-lightest hover:text-primary-copy',
                     'block px-3 py-2 rounded-md text-base font-medium transition duration-300 ease-in-out'
                   )}
-                  aria-current={isCurrent(item.uri) ? 'page' : undefined}
+                  aria-current={isCurrent(item, location) ? 'page' : undefined}
                 >
                   {item.title}
                 </Link>

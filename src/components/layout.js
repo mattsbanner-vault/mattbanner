@@ -5,12 +5,12 @@ import Header from "../components/header"
 import SEO from "../components/seo"
 import Footer from "./footer"
 
-const Layout = ({ entry, children }) => {
+const Layout = ({ location, entry, children }) => {
   return (
     <Div100vh className="flex flex-col font-sans tracking-tight">
       <SEO title={entry.title} description={entry.summary} />
 
-      <Header entry={entry}/>
+      <Header entry={entry} location={location}/>
 
       {children}
 

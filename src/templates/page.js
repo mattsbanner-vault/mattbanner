@@ -21,9 +21,9 @@ export const query = graphql`
   }
 `
 
-const Page = ({ data: { entry } }) => {
+const Page = ({ location, data: { entry } }) => {
     return (
-        <Layout entry={entry}>
+        <Layout location={ location } entry={ entry }>
             <main className={`max-w-4xl mx-auto w-full flex-grow`}>
                 <div className={`mx-4`}>
                     <h1 className={`text-xl mb-6`}>{entry.title}</h1>
