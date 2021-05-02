@@ -1,5 +1,12 @@
 module.exports = {
-  purge: ['./src/**/*.{js,jsx,ts,tsx}'],
+  purge: {
+    content: ['./src/**/*.{js,jsx,ts,tsx}'],
+    options: {
+      whiteList: [
+        /grid-cols-$/
+      ]
+    }
+  },
   darkMode: false,
   theme: {
     fontFamily: {

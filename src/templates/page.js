@@ -5,7 +5,7 @@ import Matrix from "../components/matrix"
 
 export const query = graphql`
   query PageQuery($slug: String!) {
-    entry: craftPagesPagesEntry(slug: { eq: $slug }) {
+    entry: craftPagesPageEntry(slug: { eq: $slug }) {
       id
       remoteId
       title

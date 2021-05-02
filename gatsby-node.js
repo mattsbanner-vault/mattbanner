@@ -13,7 +13,7 @@ exports.createPages = ({ graphql, actions }) => {
     return graphql(
     `
       query PagesQuery {
-        pages: allCraftPagesPagesEntry {
+        pages: allCraftPagesPageEntry {
           nodes {
             uri
             remoteId
@@ -28,7 +28,7 @@ exports.createPages = ({ graphql, actions }) => {
             throw result.errors
         }
 
-        const pages = result.data.pages.nodes
+        const pages = result.data.pages.nodes;
 
         pages.forEach(post => {
             createPage({
