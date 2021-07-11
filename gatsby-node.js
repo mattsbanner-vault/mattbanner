@@ -22,7 +22,6 @@ exports.createPages = ({ graphql, actions }) => {
         }
       }
     `,
-    { limit: 1000 }
     ).then(result => {
         if (result.errors) {
             throw result.errors

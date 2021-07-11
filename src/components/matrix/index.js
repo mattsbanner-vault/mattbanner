@@ -5,25 +5,27 @@ import LeadText from "./types/leadText"
 import RichText from "./types/richText"
 import Button from "./types/button"
 import Heading from "./types/heading"
+import ChildIndex from "./types/childIndex"
 
 const components = {
     leadText: LeadText,
     richText: RichText,
     button: Button,
     heading: Heading,
-}
+    childIndex: ChildIndex
+};
 
 const Block = props => {
-    const { block } = props
-    const type = block.typeHandle
-    const Component = components[type]
+    const { block } = props;
+    const type = block.typeHandle;
+    const Component = components[type];
 
     if (Object.keys(components).includes(type)) {
         return <Component {...props} />
     } else {
         return null
     }
-}
+};
 
 const Blocks = ({ blocks }) => {
     return (
@@ -33,7 +35,7 @@ const Blocks = ({ blocks }) => {
             ))}
         </div>
     )
-}
+};
 
 export default Blocks
 
@@ -59,6 +61,11 @@ export const query = graphql`
   
   fragment RichTextFragment on Craft_bodyContent_richText_BlockType {
     richText
+    typeHandle
+  }
+  
+  fragment ChildIndexFragment on Craft_bodyContent_childIndex_BlockType {
+    ownerId
     typeHandle
   }
  
